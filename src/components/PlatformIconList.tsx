@@ -31,14 +31,20 @@ const PlatformIconList = ({ platforms }: Props) => {
   return (
     <>
       <HStack marginY={1}>
-        {platforms.map((platform) => (
-          <Icon
-            key={platform.id}
-            as={iconMap[platform.slug]}
-            color="gray.500"
-            size={"sm"}
-          />
-        ))}
+        {platforms.map((platform) => {
+          const IconComponent = iconMap[platform.slug]; // Get the correct icon
+
+          if (!IconComponent) return null; // ✅ Prevent rendering an invalid icon
+
+          return (
+            <Icon
+              key={platform.id}
+              as={IconComponent}
+              color="gray.500"
+              boxSize={4} // ✅ Use 'boxSize' instead of 'size'
+            />
+          );
+        })}
       </HStack>
     </>
   );
