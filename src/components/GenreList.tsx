@@ -1,6 +1,6 @@
 import useGenres, { Genre } from "@/hooks/useGenre";
 import getCroppedImageURL from "@/services/image-url";
-import { HStack, Image, Link, List, Text } from "@chakra-ui/react";
+import { Heading, HStack, Image, Link, List, Text } from "@chakra-ui/react";
 import GenreListSkeleton from "./GenreListSkeleton";
 
 interface Props {
@@ -28,12 +28,16 @@ const GenreList = ({ onSelectedGenre, selectedGenre }: Props) => {
 
   return (
     <>
+      <Heading fontSize="2xl" marginBottom={3}>
+        Genres
+      </Heading>
       <List.Root variant="plain">
         {data.map((genre) => (
           <List.Item key={genre.id} paddingY="5px">
             <HStack>
               <Image
                 boxSize="32px"
+                objectFit="cover"
                 borderRadius={8}
                 src={getCroppedImageURL(genre.image_background)}
               />
