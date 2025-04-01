@@ -1,6 +1,7 @@
 import { GameQuery } from "@/App";
 import useData from "./useData";
 import { Platform } from "./usePlatforms";
+import { ESRBRating } from "@/components/ESRBRating";
 
 export interface Game {
   id: number;
@@ -8,6 +9,7 @@ export interface Game {
   background_image: string;
   parent_platforms: { platform: Platform }[];
   metacritic: number;
+  esrb_rating: ESRBRating;
 }
 
 const useGames = (gameQuery: GameQuery) =>

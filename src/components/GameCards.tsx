@@ -3,6 +3,7 @@ import { Card, HStack, Image } from "@chakra-ui/react";
 import PlatformIconList from "./PlatformIconList";
 import CriticScore from "./CriticScore";
 import getCroppedImageURL from "@/services/image-url";
+import ESRBRating from "./ESRBRating";
 
 interface Props {
   game: Game;
@@ -21,6 +22,9 @@ const GameCards = ({ game }: Props) => {
         </HStack>
         <Card.Title fontSize="2xl">{game.name}</Card.Title>
       </Card.Body>
+      <Card.Footer>
+        <ESRBRating esrb_rating={game.esrb_rating} />
+      </Card.Footer>
     </Card.Root>
   );
 };
