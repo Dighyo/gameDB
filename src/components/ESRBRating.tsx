@@ -5,7 +5,9 @@ import mature from "../assets/Mature.webp";
 import adults from "../assets/Adults.webp";
 import ratingPending from "../assets/Rating Pending.webp";
 import { Button, Image, ImageProps, Popover, Portal } from "@chakra-ui/react";
+import { Tooltip } from "@/components/ui/tooltip";
 import { AiFillSafetyCertificate } from "react-icons/ai";
+import { CgUnavailable } from "react-icons/cg";
 
 export interface ESRBRating {
   id: number;
@@ -17,8 +19,16 @@ interface Props {
 }
 
 const ESRBRating = ({ esrb_rating }: Props) => {
-  if (esrb_rating === null) return null;
-
+  if (esrb_rating === null)
+    return (
+      <>
+        <Tooltip content="No ESRB rating available at this time">
+          <Button disabled size="md" variant="outline" width="100%">
+            ESRB Rating <CgUnavailable />
+          </Button>
+        </Tooltip>
+      </>
+    );
   const esrbRatingMap: { [key: number]: ImageProps } = {
     1: { src: everyone, alt: "E for everyone" },
     2: { src: everyonePlusTen, alt: "E for everyone over 10" },
