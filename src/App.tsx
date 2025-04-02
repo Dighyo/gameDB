@@ -9,6 +9,7 @@ import { Platform } from "./hooks/usePlatforms";
 import SortSelector from "./components/SortSelector";
 import "./index.css";
 import GameHeading from "./components/GameHeading";
+import Reset from "./components/Reset";
 
 export interface GameQuery {
   genre: Genre | null;
@@ -61,6 +62,17 @@ function App() {
                 onSelectedSortOrder={(sortOrder) =>
                   setGameQuery({ ...gameQuery, sortOrder })
                 }
+              />
+              <Reset
+                onSelectReset={() =>
+                  setGameQuery({
+                    genre: null,
+                    platform: null,
+                    sortOrder: "",
+                    searchText: "",
+                  })
+                }
+                game={gameQuery}
               />
             </HStack>
           </Box>
